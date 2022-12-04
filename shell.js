@@ -41,11 +41,10 @@ rl.on("line", (inp) => {
 
 rl.on("SIGTSTP", () => {
 	console.log(child.pid);
-	rl.pause();
+	child.kill("SIGTSTP");
 });
 
 rl.on("SIGINT", (data) => {
-	console.log(data);
 	console.log("Bye Bye");
 	process.exit(0);
 });
