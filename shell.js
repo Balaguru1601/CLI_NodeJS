@@ -1,6 +1,5 @@
 const readline = require("node:readline");
 const { stdin: input, stdout: output } = require("node:process");
-const ansi = require("tui-lib/util/ansi");
 const { spawnProcess } = require("./spawn");
 // process.stdin.setRawMode(true);
 
@@ -14,11 +13,6 @@ const { spawnProcess } = require("./spawn");
 // 		return process.exit();
 // 	}
 // });
-
-const cleanTerminal = () => {
-	process.stdout.write(ansi.cleanCursor());
-	process.stdout.write(ansi.disableAlternateScreen());
-};
 
 const rl = readline.createInterface({ input, output });
 let child;
@@ -39,10 +33,10 @@ rl.on("line", (inp) => {
 // 	}
 // });
 
-rl.on("SIGTSTP", () => {
-	console.log(child.pid);
-	child.kill("SIGTSTP");
-});
+// rl.on("SIGTSTP", () => {
+// 	console.log(child.pid);
+// 	child.kill("SIGTSTP");
+// });
 
 rl.on("SIGINT", (data) => {
 	console.log("Bye Bye");
